@@ -84,12 +84,68 @@ LEFT JOIN armory_weapon ON armory_item.item_id = armory_weapon.item_ptr_id
 ```
 
 ### How many Items does each character have? (Return first 20 rows)
+```
+SELECT
+	charactercreator_character_inventory.character_id
+	,charactercreator_character.'Name' as CharacterName
+	,count(DISTINCT item_id) as item_count 
+FROM charactercreator_character
+LEFT JOIN charactercreator_character_inventory ON charactercreator_character.character_id = charactercreator_character_inventory.character_id
+GROUP BY charactercreator_character.character_id
+LIMIT 20
+```
+Returns output of character_id, CharacterName, and item_count columns,
+with item_count being the number of items each character has.
 
 ### How many Weapons does each character have? (Return first 20 rows)
+```
+SELECT
+		charactercreator_character_inventory.character_id
+		,charactercreator_character.'Name' as CharacterName
+		,count(DISTINCT item_id) as item_count
+		,count(DISTINCT item_ptr_id) as weapon_count 
+	FROM charactercreator_character
+	LEFT JOIN charactercreator_character_inventory ON charactercreator_character.character_id = charactercreator_character_inventory.character_id
+	LEFT JOIN armory_weapon ON charactercreator_character_inventory.item_id = armory_weapon.item_ptr_id
+	GROUP BY charactercreator_character.character_id
+	LIMIT 20
+```
+Returns output of character_id, CharacterName, item_count and  weapon_count
+columns, with weapon_count being the number of weapons each character has.
  
-### On average, how many Items does each Character have?
+### On average, how many Items does each Character have? (2.97)
+```
+SELECT
+	AVG(item_count)
+FROM (
+	SELECT
+		charactercreator_character_inventory.character_id
+		,charactercreator_character.'Name' as CharacterName
+		,count(DISTINCT item_id) as item_count 
+	FROM charactercreator_character
+	LEFT JOIN charactercreator_character_inventory ON charactercreator_character.character_id = charactercreator_character_inventory.character_id
+	GROUP BY charactercreator_character.character_id
+)
+```
  
-### On average, how many Weapons does each character have?
+### On average, how many Weapons does each character have? (0.67)
+```
+SELECT
+	AVG(item_count)
+	,AVG(weapon_count)
+FROM (
+	SELECT
+		charactercreator_character_inventory.character_id
+		,charactercreator_character.'Name' as CharacterName
+		,count(DISTINCT item_id) as item_count
+		,count(DISTINCT item_ptr_id) as weapon_count 
+	FROM charactercreator_character
+	LEFT JOIN charactercreator_character_inventory ON charactercreator_character.character_id = charactercreator_character_inventory.character_id
+	LEFT JOIN armory_weapon ON charactercreator_character_inventory.item_id = armory_weapon.item_ptr_id
+	GROUP BY charactercreator_character.character_id
+	--LIMIT 20
+)
+```
 
 ## Methodology
 
