@@ -1,7 +1,7 @@
 import sqlite3
 import os
 # DATABASE_FILEPATH = "chinook.db"
-#DATABASE_FILEPATH = os.path.join(os.path.dirname(__file__), "chinook.db")
+# DATABASE_FILEPATH = os.path.join(os.path.dirname(__file__), "chinook.db")
 DATABASE_FILEPATH = os.path.join(
     os.path.dirname(__file__),
     "..",
