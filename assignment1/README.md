@@ -158,3 +158,7 @@ You can use the DB Browser or other tools to explore the data and work on your q
 ``` py
 rpg_queries_abw.py
 ```
+
+# Notes on PART II
+All code is available in ```buddymove_holidayiq_abw.py```  but markdown version of
+SQL prompts and code are also available in ```PART2.md```. (SQL commands are commented out in ```buddymove_holidayiq_abw.py```)
