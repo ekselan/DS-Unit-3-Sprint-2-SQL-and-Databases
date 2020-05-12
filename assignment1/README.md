@@ -154,3 +154,7 @@ You do not need all the tables - in particular, the account_*, auth_*, django_*,
 ## Submission
 
 You can use the DB Browser or other tools to explore the data and work on your queries if you wish, but to complete the assignment you should write a file rpg_queries.py that imports sqlite3 and programmatically executes and reports results for the above queries.
+
+``` py
+rpg_queries_abw.py
+```
