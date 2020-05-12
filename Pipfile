@@ -9,6 +9,8 @@ pylint = "*"
 [packages]
 pandas = "*"
 autopep8 = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"
