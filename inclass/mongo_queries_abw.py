@@ -116,10 +116,14 @@ print("DOCS:", collection.count_documents({})) # SELECT count(distinct id) from 
 
 
 pikas = list(collection.find({"name": "Pikachu"})) # SELECT * FROM pokemon WHERE name = "Pikachu"
-print(len(pikas), "PIKAS")
-print(pikas[0]["_id"]) #> ObjectId('5ebc31c79c171e43bb5ed469')
-print(pikas[0]["name"])
+# print(len(pikas), "PIKAS")
+# print(pikas[0]["_id"]) #> ObjectId('5ebc31c79c171e43bb5ed469')
+# print(pikas[0]["name"])
 
 
-strong = list(collection.find({"level": {"$gte": 60}}))
+# strong = list(collection.find({"level": {"$gte": 60}} $or {"lvl": {"$gte": 60}}))
+# strong = list(collection.find({"level": {"$gte": 60}, "$or" "lvl": {"$gte": 60}}))
+strong = list(collection.find({"$or": [{"level": {"$gte": 60}}, {"lvl": {"$gte": 60}}]}))
 # TODO: also try to account for our mistakes "lvl" vs "level"
+breakpoint()
+print(strong)
