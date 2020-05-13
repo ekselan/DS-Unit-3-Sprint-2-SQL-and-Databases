@@ -1,6 +1,6 @@
 import psycopg2
 import pandas as pd
-import csv
+# import csv
 
 # Establish PostgreSQL connection
 DB_NAME = 'axajhxor'
@@ -46,7 +46,6 @@ Fare NUMERIC
 #     """
 # )
 # conn.commit()
-
 
 ### Insert titanic data
 with open('module2-sql-for-analysis/titanic.csv', 'r') as f:
