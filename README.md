@@ -144,3 +144,13 @@ FROM (
 	ORDER BY artists.ArtistId
 )
 ```
+
+
+# CLASS 2
+
+## Inserting data into SQL database
+```
+INSERT INTO test_table (name, data) VALUES
+('A row name', null),
+('Another row, with JSON', '{ "a": 1, "b": ["dog", "cat", 42], "c": true }'::JSONB);
+```
