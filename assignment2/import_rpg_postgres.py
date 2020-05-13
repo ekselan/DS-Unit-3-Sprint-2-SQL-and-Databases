@@ -1,21 +1,24 @@
 import psycopg2
 import sqlite3
-import os.path
 
-### Establish PostgreSQL connection
+# Establish PostgreSQL connection
 DB_NAME = 'axajhxor'
 DB_USER = 'axajhxor'
 DB_PW = 'jon9BPw8JOK1xjzsunZhv3xsdPTmLLuB'
 DB_HOST = 'rajje.db.elephantsql.com'
 
-conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PW, host=DB_HOST)
+conn = psycopg2.connect(
+    dbname=DB_NAME,
+    user=DB_USER,
+    password=DB_PW,
+    host=DB_HOST)
 # print(type(conn))
 
 cur = conn.cursor()
 # print(type(cur))
 
 
-### Establish sqlite3 connection
+# Establish sqlite3 connection
 sl_conn = sqlite3.connect("data/rpg_db_original.sqlite3")
 sl_curs = sl_conn.cursor()
 # print(type(sl_conn))
@@ -27,7 +30,7 @@ sl_curs = sl_conn.cursor()
 ###################### INSERTS ###########################
 
 
-### Get and insert data for charcreator_characters
+# Get and insert data for charcreator_characters
 get_characters = 'SELECT * FROM charactercreator_character'
 chars = sl_curs.execute(get_characters).fetchall()
 
@@ -54,7 +57,7 @@ WHERE pg_tables.schemaname != 'pg_catalog' AND 'pg_tables.schemename' != 'inform
 
 ###################### SUBCLASS: CLERIC #####################
 
-### Create cleric table
+# Create cleric table
 # cur.execute(
 #     """
 #     CREATE TABLE clerics (
@@ -66,7 +69,7 @@ WHERE pg_tables.schemaname != 'pg_catalog' AND 'pg_tables.schemename' != 'inform
 # )
 # conn.commit()
 
-### Get and insert data for clerics
+# Get and insert data for clerics
 get_characters = 'SELECT * FROM charactercreator_cleric'
 chars = sl_curs.execute(get_characters).fetchall()
 
@@ -84,7 +87,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 
 ###################### SUBCLASS: MAGE #####################
 
-### Create mage table
+# Create mage table
 # cur.execute(
 #     """
 #     CREATE TABLE mages (
@@ -96,7 +99,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 # )
 # conn.commit()
 
-### Get and insert data for mages
+# Get and insert data for mages
 get_characters = 'SELECT * FROM charactercreator_mage'
 chars = sl_curs.execute(get_characters).fetchall()
 
@@ -114,7 +117,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 
 ###################### SUBCLASS: THIEF #####################
 
-### Create thieves table
+# Create thieves table
 # cur.execute(
 #     """
 #     CREATE TABLE thieves (
@@ -144,7 +147,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 
 ###################### SUBCLASS: FIGTHER #####################
 
-### Create fighters table
+# Create fighters table
 # cur.execute(
 #     """
 #     CREATE TABLE fighters (
@@ -174,7 +177,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 
 ###################### SUBCLASS: NECROMANCERS #####################
 
-### Create necromancers table
+# Create necromancers table
 # cur.execute(
 #     """
 #     CREATE TABLE necromancers (
@@ -185,7 +188,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 # )
 # conn.commit()
 
-### Get and insert data for necromancers
+# Get and insert data for necromancers
 # get_characters = 'SELECT * FROM charactercreator_necromancer'
 # chars = sl_curs.execute(get_characters).fetchall()
 
@@ -207,7 +210,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 ###################### ITEMS #####################
 
 
-### Get and insert data for items
+# Get and insert data for items
 # get_itms = 'SELECT * FROM armory_item'
 # itms = sl_curs.execute(get_itms).fetchall()
 
@@ -226,7 +229,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 ###################### SUBCLASS: WEAPONS #####################
 
 
-### Get and insert data for weapons
+# Get and insert data for weapons
 # get_itms = 'SELECT * FROM armory_weapon'
 # itms = sl_curs.execute(get_itms).fetchall()
 
@@ -248,17 +251,17 @@ chars = sl_curs.execute(get_characters).fetchall()
 ###################### INVENTORY #####################
 
 
-### Get and insert data for char_inventory
-get_itms = 'SELECT * FROM charactercreator_character_inventory'
-itms = sl_curs.execute(get_itms).fetchall()
+# Get and insert data for char_inventory
+# get_itms = 'SELECT * FROM charactercreator_character_inventory'
+# itms = sl_curs.execute(get_itms).fetchall()
 
-for itm in itms:
-    insert_item = """
-    INSERT INTO char_inventory
-    (character_id, item_id)
-    VALUES """ + str(itm[1:]) + ";"
-    cur.execute(insert_item)
-conn.commit()
+# for itm in itms:
+#     insert_item = """
+#     INSERT INTO char_inventory
+#     (character_id, item_id)
+#     VALUES """ + str(itm[1:]) + ";"
+#     cur.execute(insert_item)
+# conn.commit()
 
-cur.execute('SELECT * FROM char_inventory')
-cur.fetchall()
+# cur.execute('SELECT * FROM char_inventory')
+# cur.fetchall()
