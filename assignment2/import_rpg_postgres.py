@@ -30,15 +30,15 @@ sl_curs = sl_conn.cursor()
 ###################### INSERTS ###########################
 
 
-# Get and insert data for charcreator_characters
-get_characters = 'SELECT * FROM charactercreator_character'
-chars = sl_curs.execute(get_characters).fetchall()
+# # Get and insert data for charcreator_characters
+# get_characters = 'SELECT * FROM charactercreator_character'
+# chars = sl_curs.execute(get_characters).fetchall()
 
-show_tables = """
-SELECT *
-FROM pg_catalog.pg_tables
-WHERE pg_tables.schemaname != 'pg_catalog' AND 'pg_tables.schemename' != 'information_schema'
-"""
+# show_tables = """
+# SELECT *
+# FROM pg_catalog.pg_tables
+# WHERE pg_tables.schemaname != 'pg_catalog' AND 'pg_tables.schemename' != 'information_schema'
+# """
 # cur.execute(show_tables)
 # print(cur.fetchall())
 # print(chars[0])
@@ -188,7 +188,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 # )
 # conn.commit()
 
-# Get and insert data for necromancers
+# # Get and insert data for necromancers
 # get_characters = 'SELECT * FROM charactercreator_necromancer'
 # chars = sl_curs.execute(get_characters).fetchall()
 
@@ -196,21 +196,29 @@ chars = sl_curs.execute(get_characters).fetchall()
 #     insert_character = """
 #     INSERT INTO necromancers
 #     (talisman_charged)
-#     VALUES """ + str(character[1]) + ";"
+#     VALUES (1);""" 
+#     # + str(character[1]) + ";"
 #     # breakpoint()
 #     cur.execute(insert_character)
 # conn.commit()
 
 # cur.execute('SELECT * FROM necromancers')
 # cur.fetchall()
-# # Was actually unable to get this one to work - continued to get error
-# # regarding line 198 having a SyntaxError: at or near "1"
+# # Was actually unable to get this one to work - 
+# # continued to get error
+# # regarding line 198 having a 
+# # SyntaxError: at or near "1"
+
+# # Came back and resolved by directly passing in 
+# # (1) instead of slicing through character tuple.
+# # Works in this case bc all values were 1, but
+# # not sure if this is a scalable solution ...
 
 
 ###################### ITEMS #####################
 
 
-# Get and insert data for items
+## Get and insert data for items
 # get_itms = 'SELECT * FROM armory_item'
 # itms = sl_curs.execute(get_itms).fetchall()
 
@@ -229,7 +237,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 ###################### SUBCLASS: WEAPONS #####################
 
 
-# Get and insert data for weapons
+# # Get and insert data for weapons
 # get_itms = 'SELECT * FROM armory_weapon'
 # itms = sl_curs.execute(get_itms).fetchall()
 
@@ -237,15 +245,22 @@ chars = sl_curs.execute(get_characters).fetchall()
 #     insert_item = """
 #     INSERT INTO weapons
 #     (power)
-#     VALUES """ + str(itm[1:]) + ";"
+#     VALUES (0);""" 
+#     # + str(itm[1]) + ";"
+#     # breakpoint()
 #     cur.execute(insert_item)
+# # breakpoint()
 # conn.commit()
 
 # cur.execute('SELECT * FROM weapons')
 # cur.fetchall()
 
-# # Ran into same error as necromancer subclass - must have
-# # something to do with itm[1:]
+## Ran into same error as necromancer subclass - must have
+## something to do with itm[1:]
+
+## All values were 0, so for some reason the solution
+## was to directly pass in 0 as the value, instead
+## of slicing itm tuple
 
 
 ###################### INVENTORY #####################
