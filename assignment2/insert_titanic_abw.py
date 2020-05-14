@@ -48,9 +48,9 @@ Fare NUMERIC
 # conn.commit()
 
 ### Insert titanic data
-with open('module2-sql-for-analysis/titanic.csv', 'r') as f:
-    next(f)  # Skip header row
-    cur.copy_from(f, 'titanic', sep=',')
+# with open('module2-sql-for-analysis/titanic.csv', 'r') as f:
+#     next(f)  # Skip header row
+#     cur.copy_from(f, 'titanic', sep=',')
 
-conn.commit()
-#(https://www.dataquest.io/blog/loading-data-into-postgres/)
+# conn.commit()
+# #(https://www.dataquest.io/blog/loading-data-into-postgres/)
