@@ -12,11 +12,10 @@ conn = psycopg2.connect(
     user=DB_USER,
     password=DB_PW,
     host=DB_HOST)
-print(type(conn))
+# print(type(conn))
 
 cur = conn.cursor()
-print(type(cur))
-breakpoint()
+# print(type(cur))
 
 # Establish sqlite3 connection
 sl_conn = sqlite3.connect("data/rpg_db_original.sqlite3")
@@ -30,9 +29,9 @@ sl_curs = sl_conn.cursor()
 ###################### INSERTS ###########################
 
 
-# # Get and insert data for charcreator_characters
-# get_characters = 'SELECT * FROM charactercreator_character'
-# chars = sl_curs.execute(get_characters).fetchall()
+# Get and insert data for charcreator_characters
+get_characters = 'SELECT * FROM charactercreator_character'
+chars = sl_curs.execute(get_characters).fetchall()
 
 # show_tables = """
 # SELECT *
@@ -43,15 +42,33 @@ sl_curs = sl_conn.cursor()
 # print(cur.fetchall())
 # print(chars[0])
 
+# ## Create characters table
+# cur.execute(
+#     """
+#     CREATE TABLE cc_characters (
+#     character_id SERIAL PRIMARY KEY,
+#     name VARCHAR(30) NOT NULL,
+#     level INTEGER NOT NULL,
+#     exp INTEGER NOT NULL,
+#     hp INTEGER NOT NULL,
+#     strength INTEGER NOT NULL,
+#     intelligence INTEGER NOT NULL,
+#     dexterity INTEGER NOT NULL,
+#     wisdom INTEGER NOT NULL
+#     );
+#     """
+# )
+# conn.commit()
+
 # for character in chars:
 #     insert_character = """
-#     INSERT INTO charcreator_character
+#     INSERT INTO cc_characters
 #     (name, level, exp, hp, strength, intelligence, dexterity, wisdom)
 #     VALUES """ + str(character[1:]) + ";"
 #     cur.execute(insert_character)
 # conn.commit()
 
-# cur.execute('SELECT * FROM charcreator_character')
+# cur.execute('SELECT * FROM cc_character')
 # cur.fetchall()
 
 

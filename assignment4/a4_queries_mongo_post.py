@@ -70,3 +70,14 @@ b = db.weapons_collection
 n_weapons = b.count_documents({})
 
 print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
+
+
+
+## AVG NUM ITEMS PER CHARACTER
+a = db.character_collection
+n_characters = a.count_documents({})
+
+b = db.items_collection
+n_items = b.count_documents({})
+
+print("AVG NUM ITEMS PER CHAR:", n_items / n_characters)
