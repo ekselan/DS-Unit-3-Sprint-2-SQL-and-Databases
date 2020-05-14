@@ -12,11 +12,11 @@ conn = psycopg2.connect(
     user=DB_USER,
     password=DB_PW,
     host=DB_HOST)
-# print(type(conn))
+print(type(conn))
 
 cur = conn.cursor()
-# print(type(cur))
-
+print(type(cur))
+breakpoint()
 
 # Establish sqlite3 connection
 sl_conn = sqlite3.connect("data/rpg_db_original.sqlite3")

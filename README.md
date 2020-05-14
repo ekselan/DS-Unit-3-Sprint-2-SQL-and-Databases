@@ -1,6 +1,22 @@
 # DS-Unit-3-Sprint-2-SQL-and-Databases
 SQL and Databases for Data Science
 
+# SPRINT CHALLENGE EXPECTATIONS:
+
+1. Very focused on SQL and relational databases
+
+2. Will be using sqlite3 database (helpful to review code that interfaces with sqlite3)
+
+3. Part I - create a new db and populate it (sqlite3) via a python script (table creation, insert statements)
+
+4. Part I (B) - write some queries to answer questions on that db
+
+5. Part II - write python script to connect to a provided db and answer questions about it (provided schema)
+
+6. Part III - asks some conceptual questions about db provided in Part II (potentially more queries, joins)
+
+7. Part IV - conceptual questions about relationships between tables, SQL vs noSQL, etc.
+
 # ACID
 
 1. Atomicity - a transaction functions as a "unit" ; it either succeeds completely or fails completely
