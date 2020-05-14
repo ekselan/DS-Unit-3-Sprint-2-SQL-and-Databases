@@ -10,12 +10,10 @@ SQLite).
 
 ### How many total Characters are there? (302)
 ```
-
+coll = db.character_collection
+print("Num Characters:", coll.count_documents({}))
 ```
 ### How many of each specific subclass?
-```
-
-```
 #### Mage: 108
 ```
 

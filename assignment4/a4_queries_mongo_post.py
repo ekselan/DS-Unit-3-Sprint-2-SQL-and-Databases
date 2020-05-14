@@ -25,5 +25,4 @@ print(db.list_collection_names()) #[character_collection]
 
 coll = db.character_collection
 print("------------------")
-print(type(coll))
-breakpoint()
+print("Num Characters:", coll.count_documents({}))
