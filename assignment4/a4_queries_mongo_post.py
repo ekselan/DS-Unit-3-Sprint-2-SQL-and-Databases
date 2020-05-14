@@ -53,3 +53,20 @@ print("Num Fighters:", coll.count_documents({}))
 ## NUM MANCERS
 coll = db.mancer_collection
 print("Num Necromancers:", coll.count_documents({}))
+
+## NUM ITEMS
+coll = db.items_collection
+print("Num Items:", coll.count_documents({}))
+
+## NUM WEAPONS
+coll = db.weapons_collection
+print("Num Weapons:", coll.count_documents({}))
+
+## NUM ITEMS NOT WEAPONS
+a = db.items_collection
+n_items = a.count_documents({})
+
+b = db.weapons_collection
+n_weapons = b.count_documents({})
+
+print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)

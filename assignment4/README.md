@@ -41,19 +41,24 @@ print("Num Mancers:", coll.count_documents({}))
 ```
 ### How many total Items? (174)
 ```
-
+coll = db.items_collection
+print("Num Items:", coll.count_documents({}))
 ```
 ### How many of the Items are weapons? How many are not?
-```
-
-```
 #### Weapons: 37
 ```
-
+coll = db.weapons_collection
+print("Num Weapons:", coll.count_documents({
 ```
 #### Not weapons: 137
 ```
+a = db.items_collection
+n_items = a.count_documents({})
 
+b = db.weapons_collection
+n_weapons = b.count_documents({})
+
+print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
 ```
 ### How many Items does each character have? (Return first 20 rows)
 ```
