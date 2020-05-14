@@ -16,23 +16,28 @@ print("Num Characters:", coll.count_documents({}))
 ### How many of each specific subclass?
 #### Mage: 108
 ```
-
+coll = db.mage_collection
+print("Num Mages:", coll.count_documents({}))
 ```
 #### Thief: 51
 ```
-
+coll = db.thief_collection
+print("Num Thieves:", coll.count_documents({}))
 ```
 #### Cleric: 75
 ```
-
+coll = db.cleric_collection
+print("Num Clerics:", coll.count_documents({}))
 ```
 #### Fighter: 68
 ```
-
+coll = db.fighter_collection
+print("Num Fighters:", coll.count_documents({}))
 ```
 #### Necromancer: 11
 ```
-
+coll = db.mancer_collection
+print("Num Mancers:", coll.count_documents({}))
 ```
 ### How many total Items? (174)
 ```

@@ -21,8 +21,35 @@ client = pymongo.MongoClient(connection_uri)
 db = client.rpg_data_db 
 print("----------------")
 # print("DB:", type(db), db)
-print(db.list_collection_names()) #[character_collection]
+# print(db.list_collection_names()) 
+## Output:
+# ['thief_collection', 'mancer_collection', 
+# 'fighter_collection', 'weapons_collection', 
+# 'mage_collection', 'items_collection', 
+# 'inventory_collection', 'cleric_collection', 
+# 'character_collection']
 
+# NUM CHARACTERS
 coll = db.character_collection
+print("Num Thieves:", coll.count_documents({}))
+
+## NUM THIEVES
+coll = db.thief_collection
 print("------------------")
-print("Num Characters:", coll.count_documents({}))
+print("Num Thieves:", coll.count_documents({}))
+
+## NUM MAGES
+coll = db.mage_collection
+print("Num Mages:", coll.count_documents({}))
+
+## NUM CLERICS
+coll = db.cleric_collection
+print("Num Clerics:", coll.count_documents({}))
+
+## NUM FIGHTERS
+coll = db.fighter_collection
+print("Num Fighters:", coll.count_documents({}))
+
+## NUM MANCERS
+coll = db.mancer_collection
+print("Num Necromancers:", coll.count_documents({}))
