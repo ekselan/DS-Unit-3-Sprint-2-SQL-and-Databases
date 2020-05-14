@@ -1,6 +1,6 @@
 # Assignment III
 
-Full Assignment III code (including mongoDB instance connection) is available in ```mongo_queries_abw.py```. Below is response to question prompt as well as code to insert RPG data into MongoDB.
+Full Assignment III code (including mongoDB instance connection) is available in ```a3_mongo_queries_abw.py```. Below is response to question prompt as well as code to insert RPG data into MongoDB.
 
 ## "How was working with MongoDB different from working with PostgreSQL? What was easier, and what was harder?"
 
