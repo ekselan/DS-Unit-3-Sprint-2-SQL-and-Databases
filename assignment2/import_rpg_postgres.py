@@ -196,7 +196,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 #     insert_character = """
 #     INSERT INTO necromancers
 #     (talisman_charged)
-#     VALUES (1);""" 
+#     VALUES (1);"""
 #     # + str(character[1]) + ";"
 #     # breakpoint()
 #     cur.execute(insert_character)
@@ -204,12 +204,12 @@ chars = sl_curs.execute(get_characters).fetchall()
 
 # cur.execute('SELECT * FROM necromancers')
 # cur.fetchall()
-# # Was actually unable to get this one to work - 
+# # Was actually unable to get this one to work -
 # # continued to get error
-# # regarding line 198 having a 
+# # regarding line 198 having a
 # # SyntaxError: at or near "1"
 
-# # Came back and resolved by directly passing in 
+# # Came back and resolved by directly passing in
 # # (1) instead of slicing through character tuple.
 # # Works in this case bc all values were 1, but
 # # not sure if this is a scalable solution ...
@@ -218,7 +218,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 ###################### ITEMS #####################
 
 
-## Get and insert data for items
+# Get and insert data for items
 # get_itms = 'SELECT * FROM armory_item'
 # itms = sl_curs.execute(get_itms).fetchall()
 
@@ -245,7 +245,7 @@ chars = sl_curs.execute(get_characters).fetchall()
 #     insert_item = """
 #     INSERT INTO weapons
 #     (power)
-#     VALUES (0);""" 
+#     VALUES (0);"""
 #     # + str(itm[1]) + ";"
 #     # breakpoint()
 #     cur.execute(insert_item)
@@ -255,12 +255,12 @@ chars = sl_curs.execute(get_characters).fetchall()
 # cur.execute('SELECT * FROM weapons')
 # cur.fetchall()
 
-## Ran into same error as necromancer subclass - must have
-## something to do with itm[1:]
+# Ran into same error as necromancer subclass - must have
+# something to do with itm[1:]
 
-## All values were 0, so for some reason the solution
-## was to directly pass in 0 as the value, instead
-## of slicing itm tuple
+# All values were 0, so for some reason the solution
+# was to directly pass in 0 as the value, instead
+# of slicing itm tuple
 
 
 ###################### INVENTORY #####################

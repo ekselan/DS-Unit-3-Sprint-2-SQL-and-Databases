@@ -30,4 +30,3 @@ print("CURSOR:", type(cur))
 
 print("-------------------")
 print("Congrats! You've Sueccessfully connected to a PostgreSQL instance!")
-
