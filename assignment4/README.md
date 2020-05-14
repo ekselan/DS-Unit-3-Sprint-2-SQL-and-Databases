@@ -1,6 +1,6 @@
 # Assignment IV
 
-### mongoDB 
+## mongoDB 
 
 Practice! Go back to both your deployed PostgreSQL (Titanic data) and MongoDB
 (RPG data) instances - use [MongoDB
@@ -8,10 +8,67 @@ queries](https://docs.mongodb.com/manual/tutorial/query-documents/) to answer
 the same questions as you did from the first module (when the RPG data was in
 SQLite). 
 
+### How many total Characters are there? (302)
+```
 
+```
+### How many of each specific subclass?
+```
 
+```
+#### Mage: 108
+```
 
-### PostgreSQL 
+```
+#### Thief: 51
+```
+
+```
+#### Cleric: 75
+```
+
+```
+#### Fighter: 68
+```
+
+```
+#### Necromancer: 11
+```
+
+```
+### How many total Items? (174)
+```
+
+```
+### How many of the Items are weapons? How many are not?
+```
+
+```
+#### Weapons: 37
+```
+
+```
+#### Not weapons: 137
+```
+
+```
+### How many Items does each character have? (Return first 20 rows)
+```
+
+```
+### How many Weapons does each character have? (Return first 20 rows)
+```
+
+```
+### On average, how many Items does each Character have? (2.97)
+```
+
+```
+### On average, how many Weapons does each character have? (0.67)
+```
+
+```
+## PostgreSQL 
 
 With PostgreSQL, answer the following:
 
