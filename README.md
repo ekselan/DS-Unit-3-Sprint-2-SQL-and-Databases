@@ -1,11 +1,18 @@
 # DS-Unit-3-Sprint-2-SQL-and-Databases
 SQL and Databases for Data Science
 
-# README
-Notes on SQL commands
+# ACID
+
+1. Atomicity - a transaction functions as a "unit" ; it either succeeds completely or fails completely
+
+2. Consistency - transactions can only change a database from a valid state to another valid state
+
+3. Isolation - concurrent transactions are isolated from each other, so they have the same results as if they were run sequentially
+
+4. Durability - once a transaction has finished, it will survive runtime system failure (it is recorded in non-volatile memory)
 
 
-# Commands - Lecture 1
+# SQL Commands - Lecture 1
 
 ### Invoices where billing country is GER, CAN or USA
 ```
