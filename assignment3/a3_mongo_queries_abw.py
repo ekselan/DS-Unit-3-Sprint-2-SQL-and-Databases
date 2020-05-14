@@ -16,9 +16,9 @@ print("URI:", connection_uri)
 client = pymongo.MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
-#print(dir(client))
+# print(dir(client))
 # print("DB NAMES:", client.list_database_names()) #> ['admin', 'local']
-db = client.ds14_db # "ds14_db" or whatever you want to call it
+db = client.ds14_db  # "ds14_db" or whatever you want to call it
 # print("----------------")
 # print("DB:", type(db), db)
 
@@ -31,9 +31,6 @@ db = client.ds14_db # "ds14_db" or whatever you want to call it
 # print("--------------------------------------")
 
 
-
-
-
 ################## ASSIGNMENT III #############################
 
 # INSERT RPG DATA INTO MONGODB INSTANCE
@@ -41,50 +38,51 @@ db = client.ds14_db # "ds14_db" or whatever you want to call it
 # Create RPG database
 db = client.rpg_data_db
 
-## Establish sqlite3 connection to access rpg data
+# Establish sqlite3 connection to access rpg data
 sl_conn = sqlite3.connect("data/rpg_db_original.sqlite3")
 sl_curs = sl_conn.cursor()
 
 
-
 ################# CHARACTERS ###########################
 
-## Create new collection for RPG data
-col_characters = db.character_collection
-## Establish SQL syntax for query
-rpg_characters = 'SELECT * FROM charactercreator_character'
+# ## Create new collection for RPG data
+# col_characters = db.character_collection
+# ## Establish SQL syntax for query
+# rpg_characters = 'SELECT * FROM charactercreator_character'
 
 
-# Function to loop through characters and return list of dictionaries
-def all_chars():
-    query = rpg_characters
-    chars = sl_curs.execute(query)
-    char_data = []
-    for row in chars:
-        character = {
-            "character_id": row[0], 
-            "name": row[1],
-            "level": row[2],
-            "exp": row[3],
-            "hp": row[4],
-            "strength": row[5],
-            "intelligence": row[6],
-            "dexterity": row[7],
-            "wisdom": row[8]
-            }
-        char_data.append(character)
-    result = char_data
-    return result 
+# # Function to loop through characters and return list of dictionaries
+# def all_chars():
+#     query = rpg_characters
+#     chars = sl_curs.execute(query)
+#     char_data = []
+#     for row in chars:
+#         character = {
+#             "character_id": row[0],
+#             "name": row[1],
+#             "level": row[2],
+#             "exp": row[3],
+#             "hp": row[4],
+#             "strength": row[5],
+#             "intelligence": row[6],
+#             "dexterity": row[7],
+#             "wisdom": row[8]
+#             }
+#         char_data.append(character)
+#     result = char_data
+#     return result
 
-character_dict_list = all_chars()
-# print(character_dict_list)
+# character_dict_list = all_chars()
+# # print(character_dict_list)
 
-col_characters.insert_many(character_dict_list)
-print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT count(distinct id) from characters
+# col_characters.insert_many(character_dict_list)
+# print("DOCS(Num Characters):", col_characters.count_documents({})) #
+# SELECT count(distinct id) from characters
 
 
 ################# MAGES ###########################
 
+# col_mage = db.mage_collection
 
 # mages = 'SELECT * FROM charactercreator_mage'
 # def all_chars():
@@ -93,22 +91,23 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "character_ptr_id": row[0], 
+#             "character_ptr_id": row[0],
 #             "has_pet": row[1],
 #             "mana": row[2],
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_mage.insert_many(character_dict_list)
+# print("DOCS:", col_mage.count_documents({}))
 
 
 ################# THIEVES ###########################
 
+# col_thief = db.thief_collection
 
 # thieves = 'SELECT * FROM charactercreator_thief'
 # def all_chars():
@@ -117,21 +116,23 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "character_ptr_id": row[0], 
+#             "character_ptr_id": row[0],
 #             "is_sneaking": row[1],
 #             "energy": row[2],
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_thief.insert_many(character_dict_list)
+# print("DOCS:", col_thief.count_documents({}))
 
 
 ################# CLERICS ###########################
+
+# col_cleric = db.cleric_collection
 
 # clerics = 'SELECT * FROM charactercreator_cleric'
 # def all_chars():
@@ -140,21 +141,23 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "character_ptr_id": row[0], 
+#             "character_ptr_id": row[0],
 #             "using_shield": row[1],
 #             "mana": row[2],
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_cleric.insert_many(character_dict_list)
+# print("DOCS:", col_cleric.count_documents({}))
 
 
 ################# FIGHTERS ###########################
+
+# col_fighter = db.fighter_collection
 
 # fighters = 'SELECT * FROM charactercreator_fighter'
 # def all_chars():
@@ -163,21 +166,23 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "character_ptr_id": row[0], 
+#             "character_ptr_id": row[0],
 #             "using_shield": row[1],
 #             "rage": row[2],
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_fighter.insert_many(character_dict_list)
+# print("DOCS:", col_fighter.count_documents({}))
 
 
 ################# NECROMANCERS ###########################
+
+# col_mancer = db.mancer_collection
 
 # mancers = 'SELECT * FROM charactercreator_necromancer'
 # def all_chars():
@@ -186,20 +191,22 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "mage_ptr_id": row[0], 
+#             "mage_ptr_id": row[0],
 #             "talisman_charged": row[1],
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_mancer.insert_many(character_dict_list)
+# print("DOCS:", col_mancer.count_documents({}))
 
 
 ################# ITEMS ###########################
+
+# col_items = db.items_collection
 
 # items = 'SELECT * FROM armory_item'
 # def all_chars():
@@ -208,22 +215,24 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "item_id": row[0], 
+#             "item_id": row[0],
 #             "name": row[1],
 #             "value": row[2],
 #             "weight": row[3]
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_items.insert_many(character_dict_list)
+# print("DOCS:", col_items.count_documents({}))
 
 
 ################# WEAPONS ###########################
+
+# col_weapons = db.weapons_collection
 
 # weapons = 'SELECT * FROM armory_weapon'
 # def all_chars():
@@ -232,20 +241,22 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "item_ptr_id": row[0], 
+#             "item_ptr_id": row[0],
 #             "power": row[1]
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_weapons.insert_many(character_dict_list)
+# print("DOCS:", col_weapons.count_documents({}))
 
 
 ################# INVENTORY ###########################
+
+# col_inventory = db.inventory_collection
 
 # records = 'SELECT * FROM charactercreator_character_inventory'
 # def all_chars():
@@ -254,28 +265,20 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     char_data = []
 #     for row in chars:
 #         character = {
-#             "id": row[0], 
+#             "id": row[0],
 #             "character_id": row[1],
 #             "item_id": row[2]
 #             }
 #         char_data.append(character)
 #     result = char_data
-#     return result 
+#     return result
 
 # character_dict_list = all_chars()
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS:", collection2.count_documents({}))
+# col_inventory.insert_many(character_dict_list)
+# print("DOCS:", col_inventory.count_documents({}))
 # print("COLLECTIONS:")
 # print(db.list_collection_names())
-
-### Got the result of 1724 documents in collection2 which was as expected,
-### but later realized it would have been better to create collection for 
-### each of these as opposed to just putting them all in one collection,
-### since collections == tables
-
-
-
 
 
 #################### IN-CLASS POKEMON INSERTS #############################
@@ -290,7 +293,8 @@ print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT coun
 #     "stats":{"a":1,"b":2,"c":[1,2,3]}
 # })
 # print("DOCS:", collection.count_documents({})) # SELECT count(distinct id) from pokemon
-# print(collection.count_documents({"name": "Pikachu"})) # SELECT count(distinct id) from pokemon WHERE name = "Pikachu"
+# print(collection.count_documents({"name": "Pikachu"})) # SELECT
+# count(distinct id) from pokemon WHERE name = "Pikachu"
 
 
 # mewtwo = {
