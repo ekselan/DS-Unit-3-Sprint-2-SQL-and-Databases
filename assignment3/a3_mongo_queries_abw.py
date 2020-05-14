@@ -17,18 +17,18 @@ client = pymongo.MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
 #print(dir(client))
-print("DB NAMES:", client.list_database_names()) #> ['admin', 'local']
+# print("DB NAMES:", client.list_database_names()) #> ['admin', 'local']
 db = client.ds14_db # "ds14_db" or whatever you want to call it
-print("----------------")
-print("DB:", type(db), db)
+# print("----------------")
+# print("DB:", type(db), db)
 
-collection = db.ds14_pokemon_collection # "ds14_collection" or whatever you want to call it
-print("----------------")
-print("COLLECTION:", type(collection), collection)
-print("----------------")
-# print("COLLECTIONS:")
-# print(db.list_collection_names())
-print("--------------------------------------")
+# collection = db.ds14_pokemon_collection # "ds14_collection" or whatever you want to call it
+# print("----------------")
+# print("COLLECTION:", type(collection), collection)
+# print("----------------")
+# # print("COLLECTIONS:")
+# # print(db.list_collection_names())
+# print("--------------------------------------")
 
 
 
@@ -38,52 +38,49 @@ print("--------------------------------------")
 
 # INSERT RPG DATA INTO MONGODB INSTANCE
 
+# Create RPG database
+db = client.rpg_data_db
 
 ## Establish sqlite3 connection to access rpg data
 sl_conn = sqlite3.connect("data/rpg_db_original.sqlite3")
 sl_curs = sl_conn.cursor()
 
-## Create new collection for RPG data
-collection2 = db.rpg_collection
-print("-------------------")
-print("COLLECTION 2:", type(collection2), collection2)
-# print("COLLECTIONS:")
-# print(db.list_collection_names())
 
 
 ################# CHARACTERS ###########################
 
-
+## Create new collection for RPG data
+col_characters = db.character_collection
 ## Establish SQL syntax for query
-# rpg_characters = 'SELECT * FROM charactercreator_character'
+rpg_characters = 'SELECT * FROM charactercreator_character'
 
 
-## Function to loop through characters and return list of dictionaries
-# def all_chars():
-#     query = rpg_characters
-#     chars = sl_curs.execute(query)
-#     char_data = []
-#     for row in chars:
-#         character = {
-#             "character_id": row[0], 
-#             "name": row[1],
-#             "level": row[2],
-#             "exp": row[3],
-#             "hp": row[4],
-#             "strength": row[5],
-#             "intelligence": row[6],
-#             "dexterity": row[7],
-#             "wisdom": row[8]
-#             }
-#         char_data.append(character)
-#     result = char_data
-#     return result 
+# Function to loop through characters and return list of dictionaries
+def all_chars():
+    query = rpg_characters
+    chars = sl_curs.execute(query)
+    char_data = []
+    for row in chars:
+        character = {
+            "character_id": row[0], 
+            "name": row[1],
+            "level": row[2],
+            "exp": row[3],
+            "hp": row[4],
+            "strength": row[5],
+            "intelligence": row[6],
+            "dexterity": row[7],
+            "wisdom": row[8]
+            }
+        char_data.append(character)
+    result = char_data
+    return result 
 
-# character_dict_list = all_chars()
-# # print(character_dict_list)
+character_dict_list = all_chars()
+# print(character_dict_list)
 
-# collection2.insert_many(character_dict_list)
-# print("DOCS(Num Characters):", collection2.count_documents({})) # SELECT count(distinct id) from characters
+col_characters.insert_many(character_dict_list)
+print("DOCS(Num Characters):", col_characters.count_documents({})) # SELECT count(distinct id) from characters
 
 
 ################# MAGES ###########################
@@ -268,9 +265,9 @@ print("COLLECTION 2:", type(collection2), collection2)
 # character_dict_list = all_chars()
 
 # collection2.insert_many(character_dict_list)
-print("DOCS:", collection2.count_documents({}))
-print("COLLECTIONS:")
-print(db.list_collection_names())
+# print("DOCS:", collection2.count_documents({}))
+# print("COLLECTIONS:")
+# print(db.list_collection_names())
 
 ### Got the result of 1724 documents in collection2 which was as expected,
 ### but later realized it would have been better to create collection for 
