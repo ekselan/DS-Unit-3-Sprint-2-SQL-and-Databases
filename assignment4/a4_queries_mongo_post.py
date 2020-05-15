@@ -31,7 +31,7 @@ print("----------------")
 
 # NUM CHARACTERS
 coll = db.character_collection
-print("Num Thieves:", coll.count_documents({}))
+print("Num Characters:", coll.count_documents({}))
 
 ## NUM THIEVES
 coll = db.thief_collection
@@ -74,10 +74,36 @@ print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
 
 
 ## AVG NUM ITEMS PER CHARACTER
-a = db.character_collection
-n_characters = a.count_documents({})
+# a = db.character_collection
+# n_characters = a.count_documents({})
 
-b = db.items_collection
-n_items = b.count_documents({})
+# b = db.items_collection
+# n_items = b.count_documents({})
 
-print("AVG NUM ITEMS PER CHAR:", n_items / n_characters)
+# print("AVG NUM ITEMS PER CHAR:", n_items / n_characters)
+
+
+### The following aggregation operation on the orders
+# collection joins the documents from orders with 
+# the documents from the inventory collection using
+# the fields item from the orders collection and 
+# the sku field from the inventory collection:
+
+# db.ORDERS.aggregate([
+#    {
+#      $lookup:
+#        {
+#          from: "INVENTORY",
+#          localField: "item",
+#          foreignField: "sku",
+#          as: "inventory_docs"
+#        }
+#   }
+# ])
+
+### This was about the closest I could get on doing
+# joins in mongoDB, though I'm pretty sure that
+# syntax above is for use in a mongo shell.
+# In the interest of focusing on SQL queries for 
+# sprint challenge prep, I decided to forgo 
+# replicating the last 4 queries for now :(
