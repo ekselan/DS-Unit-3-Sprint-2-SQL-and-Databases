@@ -83,7 +83,7 @@ print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
 # print("AVG NUM ITEMS PER CHAR:", n_items / n_characters)
 
 
-### The following aggregation operation on the orders
+# ## The following aggregation operation on the orders
 # collection joins the documents from orders with 
 # the documents from the inventory collection using
 # the fields item from the orders collection and 
@@ -101,7 +101,7 @@ print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
 #   }
 # ])
 
-### This was about the closest I could get on doing
+# ## This was about the closest I could get on doing
 # joins in mongoDB, though I'm pretty sure that
 # syntax above is for use in a mongo shell.
 # In the interest of focusing on SQL queries for 

@@ -1,19 +1,30 @@
 import psycopg2
-import pandas as pd
-# import csv
+import os
+from dotenv import load_dotenv
 
-# Establish PostgreSQL connection
-DB_NAME = 'axajhxor'
-DB_USER = 'axajhxor'
-DB_PW = 'jon9BPw8JOK1xjzsunZhv3xsdPTmLLuB'
-DB_HOST = 'rajje.db.elephantsql.com'
+# ESTABLISH POSTGRES CONNECTION
+load_dotenv()
+
+PRAC_NAME = os.getenv("PRAC_NAME", default="OOPS")
+PRAC_USER = os.getenv("PRAC_USER", default="OOPS")
+PRAC_PW = os.getenv("PRAC_PW", default="OOPS")
+PRAC_HOST = os.getenv("PRAC_HOST", default="OOPS")
 
 conn = psycopg2.connect(
-    dbname=DB_NAME,
-    user=DB_USER,
-    password=DB_PW,
-    host=DB_HOST)
+    dbname=PRAC_NAME,
+    user=PRAC_USER,
+    password=PRAC_PW,
+    host=PRAC_HOST)
+print("------------------")
+print("CONNECTION:", type(conn))
+
 cur = conn.cursor()
+print("------------------")
+print("CURSOR:", type(cur))
+
+print("-------------------")
+print("Congrats! You've Sueccessfully connected to a PostgreSQL instance!")
+
 
 # Review shape of titanic.csv in terminal
 # to determine schema
@@ -47,7 +58,7 @@ Fare NUMERIC
 # )
 # conn.commit()
 
-### Insert titanic data
+# Insert titanic data
 # with open('module2-sql-for-analysis/titanic.csv', 'r') as f:
 #     next(f)  # Skip header row
 #     cur.copy_from(f, 'titanic', sep=',')
