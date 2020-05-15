@@ -5,8 +5,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 
 ########### RE-IMPORT TITANIC DATA ###############
-# established titanic data again to new version
-# would have an index/key
+# established titanic data again to include index
 
 PATH = os.path.join(os.path.dirname(__file__), "titanic.csv")
 
