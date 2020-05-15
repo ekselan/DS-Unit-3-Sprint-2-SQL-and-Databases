@@ -98,7 +98,7 @@ replicating the last 4 queries for now :(
 ```
 
 ```
-## PostgreSQL 
+# PostgreSQL 
 
 With PostgreSQL, answer the following:
 
