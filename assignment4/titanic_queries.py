@@ -5,14 +5,14 @@ from sqlalchemy import create_engine
 import pandas as pd
 
 ########### RE-IMPORT TITANIC DATA ###############
-# established titanic data again to new version 
+# established titanic data again to new version
 # would have an index/key
 
 PATH = os.path.join(os.path.dirname(__file__), "titanic.csv")
 
 df = pd.read_csv(PATH)
 df.columns = ['survived', 'pclass', 'name', 'sex', 'age',
-'siblings_spouses_aboard', 'parents_children_aboard', 'fare']
+              'siblings_spouses_aboard', 'parents_children_aboard', 'fare']
 # print(df.columns)
 
 # ESTABLISH POSTGRES CONNECTION
@@ -66,12 +66,14 @@ print("-------------------")
 ################## QUERIES ########################
 
 
-### How many passengers in pclass 3?
+# How many married couples?
 result = cur.execute(
     """
-    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    SELECT *
     FROM titanic3
-    WHERE survived = 1
+    WHERE "name" LIKE ('Mr.%')
+    OR  "name" LIKE ('Mrs.%')
+    AND siblings_spouses_aboard >= 1
     """
 )
 print(cur.fetchall())

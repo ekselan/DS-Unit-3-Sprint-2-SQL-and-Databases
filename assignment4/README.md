@@ -410,23 +410,118 @@ result = cur.execute(
 )
 print(cur.fetchall())
 ```
-### How many parents/children aboard on average? 
+### How many parents/children aboard on average?  (0.38)
 ```
-
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    """
+)
+print(cur.fetchall())
 ```
-#### By passenger class? 
+#### By passenger class?
+##### Class 1: (0.35) 
 ```
-
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    WHERE pclass = 1
+    """
+)
+print(cur.fetchall())
+```
+##### Class 2: (0.38) 
+```
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    WHERE pclass = 2
+    """
+)
+print(cur.fetchall())
+```
+##### Class 3: (0.39) 
+```
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    WHERE pclass = 3
+    """
+)
+print(cur.fetchall())
 ```
 #### By survival?
+##### Survivors: (0.46)
 ```
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    WHERE survived = 1
+    """
+)
+print(cur.fetchall())
+```
+##### Non-survivors: (0.33)
+```
+result = cur.execute(
+    """
+    SELECT AVG(parents_children_aboard) as avg_pc_aboard
+    FROM titanic3
+    WHERE survived = 0
+    """
+)
+print(cur.fetchall())
+```
+### Do any passengers have the same name? (No)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(DISTINCT name) as n_unique_names
+    FROM titanic3
+    """
+)
+print(cur.fetchall())
+```
+This was a count of 887 unique names, which matched 
+count of total rows. Also checked this way:
+```
+result = cur.execute(
+    """
+    SELECT
+        COUNT(*),
+        name
+    FROM titanic3
+    GROUP BY name
+    HAVING COUNT(*) > 1
+    """
+)
+print(cur.fetchall())
+```
+This returned an empty list / no results, indicating
+no name items that have a count greater than 1.
 
-```
-### Do any passengers have the same name?
-```
-
-```
 - (Bonus! Hard, may require pulling and processing with Python) 
 
 ### How many married couples were aboard the Titanic? 
 Assume that two people (one `Mr.` and one `Mrs.`) with the same last name and with at least 1 sibling/spouse aboard are a married couple.
+
+Furthest I got:
+```
+result = cur.execute(
+    """
+    SELECT *
+    FROM titanic3
+    WHERE "name" LIKE ('Mr.%') 
+    OR  "name" LIKE ('Mrs.%')
+    AND siblings_spouses_aboard >= 1
+    """
+)
+print(cur.fetchall())
+```
+This at least gets down to people with a "MR." or 
+"MRs." in their name, and have at least one sibling / spouse on board.
