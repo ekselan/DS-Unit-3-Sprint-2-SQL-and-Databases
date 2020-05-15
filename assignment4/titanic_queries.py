@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import pandas as pd
 
-# RE-IMPORT TITANIC DATA
+########### RE-IMPORT TITANIC DATA ###############
+# established titanic data again to new version 
+# would have an index/key
 
 PATH = os.path.join(os.path.dirname(__file__), "titanic.csv")
 
@@ -50,13 +52,26 @@ print("-------------------")
 # breakpoint()
 
 
-# Set PostgreSQL engine
-sql_url = f'postgresql://{PRAC_USER}:{PRAC_PW}@{PRAC_HOST}/{PRAC_NAME}'
-engine = create_engine(sql_url)
-# Copy df to new table in PostgreSQL
-df.to_sql('titanic3', engine, if_exists='replace')
-conn.commit()
-print("DONE")
-cur.close()
-conn.close()
-print("--------------------")
+# # Set PostgreSQL engine
+# sql_url = f'postgresql://{PRAC_USER}:{PRAC_PW}@{PRAC_HOST}/{PRAC_NAME}'
+# engine = create_engine(sql_url)
+# # Copy df to new table in PostgreSQL
+# df.to_sql('titanic3', engine, if_exists='replace')
+# conn.commit()
+# print("DONE")
+# cur.close()
+# conn.close()
+# print("--------------------")
+
+################## QUERIES ########################
+
+
+### How many passengers in pclass 3?
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE survived = 1
+    """
+)
+print(cur.fetchall())

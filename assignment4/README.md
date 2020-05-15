@@ -102,16 +102,331 @@ replicating the last 4 queries for now :(
 
 With PostgreSQL, answer the following:
 
-- How many passengers survived, and how many died?
-- How many passengers were in each class?
-- How many passengers survived/died within each class?
-- What was the average age of survivors vs nonsurvivors?
-- What was the average age of each passenger class?
-- What was the average fare by passenger class? By survival?
-- How many siblings/spouses aboard on average, by passenger class? By survival?
-- How many parents/children aboard on average, by passenger class? By survival?
-- Do any passengers have the same name?
-- (Bonus! Hard, may require pulling and processing with Python) How many married
-  couples were aboard the Titanic? Assume that two people (one `Mr.` and one
-  `Mrs.`) with the same last name and with at least 1 sibling/spouse aboard are
-  a married couple.
+### How many passengers survived? (342) 
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+### How many died? (545)
+```
+### How many passengers died?
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+
+### How many passengers were in each class?
+#### Class 1 (216)
+```
+### How many passengers in pclass 1?
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 2 (184)
+```
+### How many passengers in pclass 2?
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 2;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 3 (487)
+```
+### How many passengers in pclass 3?
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 3;
+    """
+)
+print(cur.fetchall())
+```
+### How many passengers survived/died within each class?
+#### Class 1 Survived: (136)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 1 AND survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 1 Died: (80)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 1 AND survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 2 Survived: (87)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 2 AND survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 2 Died: (97)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 2 AND survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 3 Survived: (119)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 3 AND survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 3 Died: (368)
+```
+result = cur.execute(
+    """
+    SELECT COUNT(*)
+    FROM titanic3
+    WHERE pclass = 3 AND survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+### What was the average age of survivors? (28.4)
+```
+result = cur.execute(
+    """
+    SELECT AVG(age) as avg_survivor_age
+    FROM titanic3
+    WHERE survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Nonsurvivors? (30.1)
+```
+result = cur.execute(
+    """
+    SELECT AVG(age) as avg_non_survivor_age
+    FROM titanic3
+    WHERE survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+### What was the average age of each passenger class?
+#### Class 1: (38.7)
+```
+result = cur.execute(
+    """
+    SELECT AVG(age) as avg_class_age
+    FROM titanic3
+    WHERE pclass = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 2: (29.8)
+```
+result = cur.execute(
+    """
+    SELECT AVG(age) as avg_class_age
+    FROM titanic3
+    WHERE pclass = 2;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 3: (25.1)
+```
+result = cur.execute(
+    """
+    SELECT AVG(age) as avg_class_age
+    FROM titanic3
+    WHERE pclass = 3;
+    """
+)
+print(cur.fetchall())
+```
+### What was the average fare by passenger class? 
+#### Class 1: (84.1)
+```
+result = cur.execute(
+    """
+    SELECT AVG(fare) as avg_fare
+    FROM titanic3
+    WHERE pclass = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 2: (20.6)
+```
+result = cur.execute(
+    """
+    SELECT AVG(fare) as avg_fare
+    FROM titanic3
+    WHERE pclass = 2;
+    """
+)
+print(cur.fetchall())
+```
+#### Class 3: (13.7)
+```
+result = cur.execute(
+    """
+    SELECT AVG(fare) as avg_fare
+    FROM titanic3
+    WHERE pclass = 3;
+    """
+)
+print(cur.fetchall())
+```
+### By survival?
+#### Avg Fare among Survived: (48.3)
+```
+result = cur.execute(
+    """
+    SELECT AVG(fare) as avg_fare
+    FROM titanic3
+    WHERE survived = 1;
+    """
+)
+print(cur.fetchall())
+```
+#### Avg fare among Did Not Survive: (22.2)
+```
+result = cur.execute(
+    """
+    SELECT AVG(fare) as avg_fare
+    FROM titanic3
+    WHERE survived = 0;
+    """
+)
+print(cur.fetchall())
+```
+### How many sib/spouses aboard on average? (0.5)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    """
+)
+print(cur.fetchall())
+```
+#### By passenger class? 
+##### Class 1: (0.4)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE pclass = 1
+    """
+)
+print(cur.fetchall())
+```
+##### Class 2: (0.4)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE pclass = 2
+    """
+)
+print(cur.fetchall())
+```
+##### Class 3: (0.6)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE pclass = 3
+    """
+)
+print(cur.fetchall())
+```
+#### By survival?
+##### Avg sib/spouse aboard among Survivors: (0.47)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE survived = 1
+    """
+)
+print(cur.fetchall())
+```
+##### Avg sib/spouse aboard among non - Survivors: (0.56)
+```
+result = cur.execute(
+    """
+    SELECT AVG(siblings_spouses_aboard) as avg_sib_spouse_aboard
+    FROM titanic3
+    WHERE survived = 1
+    """
+)
+print(cur.fetchall())
+```
+### How many parents/children aboard on average? 
+```
+
+```
+#### By passenger class? 
+```
+
+```
+#### By survival?
+```
+
+```
+### Do any passengers have the same name?
+```
+
+```
+- (Bonus! Hard, may require pulling and processing with Python) 
+
+### How many married couples were aboard the Titanic? 
+Assume that two people (one `Mr.` and one `Mrs.`) with the same last name and with at least 1 sibling/spouse aboard are a married couple.
