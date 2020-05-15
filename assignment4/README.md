@@ -61,11 +61,11 @@ n_weapons = b.count_documents({})
 print("NUM ITEMS NOT WEAPONS:", n_items - n_weapons)
 ```
 ### How many Items does each character have? (Return first 20 rows)
-**"The following aggregation operation on the orders
+*"The following aggregation operation on the orders
 collection joins the documents from orders with 
 the documents from the inventory collection using
 the fields item from the orders collection and 
-the sku field from the inventory collection:"**
+the sku field from the inventory collection:"*
 ```
 db.ORDERS.aggregate([
    {
