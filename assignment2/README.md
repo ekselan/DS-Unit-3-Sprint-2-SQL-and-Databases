@@ -15,7 +15,7 @@ your repo. Then start writing PostgreSQL queries to explore the data!
 
 # ALTERNATE TITANIC SOLUTIONS:
 
-### df.astype() approach
+### df.astype() approach (for lecture example)
 ```
 df["Survived"] = df["Survived"].values.astype(bool) # do this before converting to native types, because this actually converts to np.bool
 df = df.astype("object") # converts numpy dtypes to native python dtypes (avoids psycopg2.ProgrammingError: can't adapt type 'numpy.int64')
