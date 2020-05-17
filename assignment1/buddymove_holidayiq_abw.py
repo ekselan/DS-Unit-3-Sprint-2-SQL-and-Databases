@@ -25,8 +25,14 @@ cursor.execute(
     """
 )
 conn.commit()
+
 # DF to SQL
-df.to_sql('review', conn, if_exists='replace', index=False)
+df.to_sql(
+    'review',
+    conn,
+    if_exists='replace',
+    index=False
+)
 
 # cursor.execute('SELECT * FROM review;')
 # for row in cursor.fetchall():
@@ -49,6 +55,7 @@ cursor.execute(
 print("----------------------")
 print(f"Number of rows:" + str(cursor.fetchall()[0]))
 
+
 # How many users who reviewed at least 100 Nature in the category also
 # reviewed at least 100 in the Shopping category? (78)
 
@@ -66,7 +73,10 @@ print(
     cursor.fetchall()[0]
 )
 
-# (STRETCH) What are the average number of reviews for each category?
+
+# (STRETCH) What are the average number of reviews
+# for each category?
+
 cursor.execute(
     """
     SELECT
@@ -83,3 +93,6 @@ cursor.execute(
 print("------------------------")
 print("Avg n_reviews per cat:", cursor.fetchall())
 print("DONE")
+
+cursor.close()
+conn.close()
